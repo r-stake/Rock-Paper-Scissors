@@ -1,4 +1,4 @@
-// Make the computer select "Rock", "Paper" or "Scissors"
+// Randomly return "rock", "paper" or "scissors" for the computers play
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3) + 1
     if (randomNum === 1) {
@@ -10,7 +10,7 @@ function getComputerChoice() {
     }
 }
 
-// Allow player to choose "Rock", "Paper" or "Scissors" and make the choice case insensitive
+// Ask the player to choose "rock", "paper" or "scissors"
 
 function getPlayerChoice() {
     let correctInput = 0
@@ -26,7 +26,7 @@ function getPlayerChoice() {
     }
 }
 
-// Compare players choice against the computers and return the winner
+// A single round of the game. Compare players choice against the computers and return the winner
 function playSingleRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         console.log("It's a tie.\n\n")
@@ -58,7 +58,7 @@ function playSingleRound(playerSelection, computerSelection) {
     }
 }
 
-// Play 5 rounds
+// Play 5 rounds of "Rock, paper, scissors"
 function game() {
     let playerWinCount = 0
     let computerWinCount = 0
@@ -90,4 +90,3 @@ function game() {
 }
 
 game()
-// Reset the game
