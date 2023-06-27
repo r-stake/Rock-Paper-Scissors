@@ -13,37 +13,46 @@ function getComputerChoice() {
 // Allow player to choose "Rock", "Paper" or "Scissors" and make the choice case insensitive
 
 function getPlayerChoice() {
+    let choiceSelected = 0
     let selectItem = prompt(`Choose "rock", "paper" or "scissors"`)
-    return selectItem.toLowerCase()
+    while (choiceSelected === 0) {
+        if (selectItem === "rock" || selectItem === "paper" || selectItem === "scissors") {
+            choiceSelected = 1
+            return selectItem.toLowerCase()
+        }
+        else {
+            selectItem = prompt(`Invalid choice: choose "rock", "paper" or "scissors"`)
+        }
+    }
 }
 
 // Compare players choice against the computers and determine the winner
 function playSingleRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        console.log("It's a tie.")
+        console.log("It's a tie.\n\n")
         return "tie"
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
-             console.log("You Win this round! Rock beats Scissors")
+             console.log("You Win this round! Rock beats Scissors\n\n")
             return "playerWins"
         } else {
-            console.log("You Lose this round! Paper beats Rock")
+            console.log("You Lose this round! Paper beats Rock\n\n")
             return "playerLoses"
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            console.log("You Win this round! Paper beats Rock") 
+            console.log("You Win this round! Paper beats Rock\n\n") 
             return "playerWins"
         } else {
-            console.log("You Lose this round! Scissors beat Paper")
+            console.log("You Lose this round! Scissors beat Paper\n\n")
             return "playerLoses"
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
-            console.log("You Win this round! Scissors beat Paper")
+            console.log("You Win this round! Scissors beat Paper\n\n")
             return "playerWins"
         } else {
-            console.log("You Lose this round! Rock beats Scissors")
+            console.log("You Lose this round! Rock beats Scissors\n\n")
             return "playerLoses"
         }
     }
@@ -56,6 +65,7 @@ function game() {
     let computerWinCount = 0
     let winner = 0
     for (let i = 0; i < 5; i++) {
+        console.log(`Round ${i + 1}:`);
         let computerSelection = getComputerChoice()
         console.log(`Computer chose: ${computerSelection}`);
 
@@ -72,9 +82,9 @@ function game() {
     }
 
     if (playerWinCount > computerWinCount) {
-        console.log("You won!");
+        console.log("You won the game!");
     } else if (playerWinCount < computerWinCount) {
-        console.log("You lost!");
+        console.log("You lost the game!");
     } else if (playerWinCount === computerWinCount) {
         console.log("It's a tie!");
     }
