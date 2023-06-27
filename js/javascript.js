@@ -13,22 +13,22 @@ function getComputerChoice() {
 // Allow player to choose "Rock", "Paper" or "Scissors" and make the choice case insensitive
 
 function getPlayerChoice() {
-    let choiceSelected = 0
-    let selectItem = prompt(`Choose "rock", "paper" or "scissors"`)
-    while (choiceSelected === 0) {
-        if (selectItem === "rock" || selectItem === "paper" || selectItem === "scissors") {
-            choiceSelected = 1
-            return selectItem.toLowerCase()
+    let correctInput = 0
+    let getUserInput = prompt(`Choose "rock", "paper" or "scissors"`)
+    while (correctInput === 0) {
+        if (getUserInput === "rock" || getUserInput === "paper" || getUserInput === "scissors") {
+            correctInput = 1
+            return getUserInput.toLowerCase()
         }
         else {
-            selectItem = prompt(`Invalid choice: choose "rock", "paper" or "scissors"`)
+            getUserInput = prompt(`Invalid choice: choose "rock", "paper" or "scissors"`)
         }
     }
 }
 
-// Compare players choice against the computers and determine the winner
+// Compare players choice against the computers and return the winner
 function playSingleRound(playerSelection, computerSelection) {
-    if (playerSelection == computerSelection) {
+    if (playerSelection === computerSelection) {
         console.log("It's a tie.\n\n")
         return "tie"
     } else if (playerSelection === "rock") {
@@ -58,7 +58,6 @@ function playSingleRound(playerSelection, computerSelection) {
     }
 }
 
-// Print out the result
 // Play 5 rounds
 function game() {
     let playerWinCount = 0
