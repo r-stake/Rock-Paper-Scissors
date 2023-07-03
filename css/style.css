@@ -48,6 +48,7 @@ h1 {
     width: 400px;
     margin: 0 auto;
     overflow-y: auto;
+    max-height: 50vh; /* Adjust the value based on your layout */
 }
 
 .controls {

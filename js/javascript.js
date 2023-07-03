@@ -100,7 +100,7 @@ function updateScore() {
     } else if (computerWinCount === 5 ) {
         para.textContent = "You lost the game!"
         score.appendChild(para);
-        para.classList.add("lose");
+        para.classList.add("lose");g
     }
 }
 
