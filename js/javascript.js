@@ -16,35 +16,41 @@ function playSingleRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         para.textContent = "It's a tie.";
         displayResults.appendChild(para);
-        return roundOutcome = "tie"
+        para.classList.add("tie");
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
             para.textContent = "You Win this round! Rock beats Scissors.";
             displayResults.appendChild(para);
+            para.classList.add("win");
             playerWinCount += 1;
         } else {
             para.textContent = "You Lose this round! Paper beats Rock.";
             displayResults.appendChild(para);
+            para.classList.add("lose");
             computerWinCount += 1;
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             para.textContent = "You Win this round! Paper beats Rock.";
             displayResults.appendChild(para);
+            para.classList.add("win");
             playerWinCount += 1;
         } else {
             para.textContent = "You Lose this round! Scissors beat Paper.";
             displayResults.appendChild(para);
+            para.classList.add("lose");
             computerWinCount += 1;
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
             para.textContent = "You Win this round! Scissors beat Paper.";
             displayResults.appendChild(para);
+            para.classList.add("win");
             playerWinCount += 1;
         } else {
             para.textContent = "You Lose this round! Rock beats Scissors.";
             displayResults.appendChild(para);
+            para.classList.add("lose");
             computerWinCount += 1;
         }
     }
@@ -90,9 +96,11 @@ function updateScore() {
     if (playerWinCount === 5) {
         para.textContent = "You won the game!"
         score.appendChild(para);
+        para.classList.add("win");
     } else if (computerWinCount === 5 ) {
         para.textContent = "You lost the game!"
         score.appendChild(para);
+        para.classList.add("lose");
     }
 }
 
