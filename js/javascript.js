@@ -10,115 +10,102 @@ function getComputerChoice() {
     }
 }
 
-// Ask the player to choose "rock", "paper" or "scissors"
-function getPlayerChoice() {
-    // let correctInput = 0
-    // let getUserInput = prompt(`Choose "rock", "paper" or "scissors"`)
-    // while (correctInput === 0) {
-    //     if (getUserInput === "rock" || getUserInput === "paper" || getUserInput === "scissors") {
-    //         correctInput = 1
-    //         return getUserInput.toLowerCase()
-    //     }
-    //     else {
-    //         getUserInput = prompt(`Invalid choice: choose "rock", "paper" or "scissors"`)
-    //     }
-    // }
-}
-
-// A single round of the game. Compare players choice against the computers and return the winner
+// Play a single round of the game. Compare players choice against the computers and return the winner
 function playSingleRound(playerSelection, computerSelection) {
-    const displayResults = document.querySelector(".display-results");
     const para = document.createElement("p");
     if (playerSelection === computerSelection) {
         para.textContent = "It's a tie.";
         displayResults.appendChild(para);
-        return "tie"
+        return roundOutcome = "tie"
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
             para.textContent = "You Win this round! Rock beats Scissors.";
             displayResults.appendChild(para);
-            return "playerWins"
+            playerWinCount += 1;
         } else {
             para.textContent = "You Lose this round! Paper beats Rock.";
             displayResults.appendChild(para);
-            return "playerLoses"
+            computerWinCount += 1;
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             para.textContent = "You Win this round! Paper beats Rock.";
             displayResults.appendChild(para);
-            return "playerWins"
+            playerWinCount += 1;
         } else {
             para.textContent = "You Lose this round! Scissors beat Paper.";
             displayResults.appendChild(para);
-            return "playerLoses"
+            computerWinCount += 1;
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
             para.textContent = "You Win this round! Scissors beat Paper.";
             displayResults.appendChild(para);
-            return "playerWins"
+            playerWinCount += 1;
         } else {
             para.textContent = "You Lose this round! Rock beats Scissors.";
             displayResults.appendChild(para);
-            return "playerLoses"
+            computerWinCount += 1;
         }
     }
 }
 
-// Play 5 rounds of "Rock, paper, scissors"
-// function game() {
-//     let playerWinCount = 0
-//     let computerWinCount = 0
-//     let winner = 0
-//     for (let i = 0; i < 5; i++) {
-//         console.log(`Round ${i + 1}:`);
-        
-//         let computerSelection = getComputerChoice()
-//         console.log(`Computer chose: ${computerSelection}`);
-
-//         let playerSelection = getPlayerChoice()
-//         console.log(`Player chose: ${playerSelection}`);
-
-//         winner = playSingleRound(playerSelection, computerSelection);
-
-//         if (winner === "playerWins") {
-//             playerWinCount += 1
-//         } else if (winner === "playerLoses") {
-//             computerWinCount += 1
-//         }
-//     }
-
-//     if (playerWinCount > computerWinCount) {
-//         console.log("You won the game!");
-//     } else if (playerWinCount < computerWinCount) {
-//         console.log("You lost the game!");
-//     } else if (playerWinCount === computerWinCount) {
-//         console.log("It's a tie!");
-//     }
-// }
-
-// game()
+const buttons = document.querySelectorAll("button");
 
 const btnRock = document.querySelector("#rock");
 const btnPaper = document.querySelector("#paper");
 const btnScissors = document.querySelector("#scissors");
 
+const displayResults = document.querySelector(".display-results");
+const para = document.createElement("p");
+const score = document.querySelector(".score");
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
 
-btnRock.addEventListener("click", () => {
-    let playerSelection = "rock";
-    let computerSelection = getComputerChoice();
-    playSingleRound(playerSelection, computerSelection);
-});
+let roundOutcome = "";
+let playerWinCount = 0;
+let computerWinCount = 0;
+let pressedButtonId = 0;
 
-btnPaper.addEventListener("click", () => {
-    let playerSelection = "paper";
-    let computerSelection = getComputerChoice();
-    playSingleRound(playerSelection, computerSelection);
-});
 
-btnScissors.addEventListener("click", () => {
-    let playerSelection = "scissors";
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        pressedButtonId = button.id;
+    })
+})
+
+const clickHandler = () => {
+    let playerSelection = pressedButtonId;
     let computerSelection = getComputerChoice();
+    console.log(`Computer chose: ${computerSelection}`);
     playSingleRound(playerSelection, computerSelection);
-});
+    updateScore();
+}
+
+// Update score
+function updateScore() {
+    isGameFinished()
+    playerScore.textContent = `${playerWinCount}`;
+    computerScore.textContent = `${computerWinCount}`;
+    if (playerWinCount === 5) {
+        para.textContent = "You won the game!"
+        score.appendChild(para);
+    } else if (computerWinCount === 5 ) {
+        para.textContent = "You lost the game!"
+        score.appendChild(para);
+    }
+}
+
+function isGameFinished() {
+    if (playerWinCount === 5 || computerWinCount === 5) {
+        btnRock.removeEventListener("click", clickHandler);
+        btnPaper.removeEventListener("click", clickHandler);
+        btnScissors.removeEventListener("click", clickHandler);
+    }
+}
+
+btnRock.addEventListener("click", clickHandler);
+
+btnPaper.addEventListener("click", clickHandler);
+
+btnScissors.addEventListener("click", clickHandler);
