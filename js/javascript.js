@@ -11,19 +11,18 @@ function getComputerChoice() {
 }
 
 // Ask the player to choose "rock", "paper" or "scissors"
-
 function getPlayerChoice() {
-    let correctInput = 0
-    let getUserInput = prompt(`Choose "rock", "paper" or "scissors"`)
-    while (correctInput === 0) {
-        if (getUserInput === "rock" || getUserInput === "paper" || getUserInput === "scissors") {
-            correctInput = 1
-            return getUserInput.toLowerCase()
-        }
-        else {
-            getUserInput = prompt(`Invalid choice: choose "rock", "paper" or "scissors"`)
-        }
-    }
+    // let correctInput = 0
+    // let getUserInput = prompt(`Choose "rock", "paper" or "scissors"`)
+    // while (correctInput === 0) {
+    //     if (getUserInput === "rock" || getUserInput === "paper" || getUserInput === "scissors") {
+    //         correctInput = 1
+    //         return getUserInput.toLowerCase()
+    //     }
+    //     else {
+    //         getUserInput = prompt(`Invalid choice: choose "rock", "paper" or "scissors"`)
+    //     }
+    // }
 }
 
 // A single round of the game. Compare players choice against the computers and return the winner
@@ -59,34 +58,61 @@ function playSingleRound(playerSelection, computerSelection) {
 }
 
 // Play 5 rounds of "Rock, paper, scissors"
-function game() {
-    let playerWinCount = 0
-    let computerWinCount = 0
-    let winner = 0
-    for (let i = 0; i < 5; i++) {
-        console.log(`Round ${i + 1}:`);
-        let computerSelection = getComputerChoice()
-        console.log(`Computer chose: ${computerSelection}`);
+// function game() {
+//     let playerWinCount = 0
+//     let computerWinCount = 0
+//     let winner = 0
+//     for (let i = 0; i < 5; i++) {
+//         console.log(`Round ${i + 1}:`);
+        
+//         let computerSelection = getComputerChoice()
+//         console.log(`Computer chose: ${computerSelection}`);
 
-        let playerSelection = getPlayerChoice()
-        console.log(`Player chose: ${playerSelection}`);
+//         let playerSelection = getPlayerChoice()
+//         console.log(`Player chose: ${playerSelection}`);
 
-        winner = playSingleRound(playerSelection, computerSelection);
+//         winner = playSingleRound(playerSelection, computerSelection);
 
-        if (winner === "playerWins") {
-            playerWinCount += 1
-        } else if (winner === "playerLoses") {
-            computerWinCount += 1
-        }
-    }
+//         if (winner === "playerWins") {
+//             playerWinCount += 1
+//         } else if (winner === "playerLoses") {
+//             computerWinCount += 1
+//         }
+//     }
 
-    if (playerWinCount > computerWinCount) {
-        console.log("You won the game!");
-    } else if (playerWinCount < computerWinCount) {
-        console.log("You lost the game!");
-    } else if (playerWinCount === computerWinCount) {
-        console.log("It's a tie!");
-    }
-}
+//     if (playerWinCount > computerWinCount) {
+//         console.log("You won the game!");
+//     } else if (playerWinCount < computerWinCount) {
+//         console.log("You lost the game!");
+//     } else if (playerWinCount === computerWinCount) {
+//         console.log("It's a tie!");
+//     }
+// }
 
-game()
+// game()
+
+const btnRock = document.querySelector("#rock");
+const btnPaper = document.querySelector("#paper");
+const btnScissors = document.querySelector("#scissors");
+
+
+btnRock.addEventListener("click", () => {
+    let playerSelection = "rock";
+    let computerSelection = getComputerChoice();
+    playSingleRound(playerSelection, computerSelection);
+});
+
+btnPaper.addEventListener("click", () => {
+    let playerSelection = "paper";
+    let computerSelection = getComputerChoice();
+    playSingleRound(playerSelection, computerSelection);
+});
+
+btnScissors.addEventListener("click", () => {
+    let playerSelection = "scissors";
+    let computerSelection = getComputerChoice();
+    playSingleRound(playerSelection, computerSelection);
+});
+
+// const playerSelectionPaper
+// const playerSelectionScissors
