@@ -27,31 +27,40 @@ function getPlayerChoice() {
 
 // A single round of the game. Compare players choice against the computers and return the winner
 function playSingleRound(playerSelection, computerSelection) {
+    const displayResults = document.querySelector(".display-results");
+    const para = document.createElement("p");
     if (playerSelection === computerSelection) {
-        console.log("It's a tie.\n\n")
+        para.textContent = "It's a tie.";
+        displayResults.appendChild(para);
         return "tie"
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
-             console.log("You Win this round! Rock beats Scissors\n\n")
+            para.textContent = "You Win this round! Rock beats Scissors.";
+            displayResults.appendChild(para);
             return "playerWins"
         } else {
-            console.log("You Lose this round! Paper beats Rock\n\n")
+            para.textContent = "You Lose this round! Paper beats Rock.";
+            displayResults.appendChild(para);
             return "playerLoses"
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            console.log("You Win this round! Paper beats Rock\n\n") 
+            para.textContent = "You Win this round! Paper beats Rock.";
+            displayResults.appendChild(para);
             return "playerWins"
         } else {
-            console.log("You Lose this round! Scissors beat Paper\n\n")
+            para.textContent = "You Lose this round! Scissors beat Paper.";
+            displayResults.appendChild(para);
             return "playerLoses"
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
-            console.log("You Win this round! Scissors beat Paper\n\n")
+            para.textContent = "You Win this round! Scissors beat Paper.";
+            displayResults.appendChild(para);
             return "playerWins"
         } else {
-            console.log("You Lose this round! Rock beats Scissors\n\n")
+            para.textContent = "You Lose this round! Rock beats Scissors.";
+            displayResults.appendChild(para);
             return "playerLoses"
         }
     }
@@ -113,6 +122,3 @@ btnScissors.addEventListener("click", () => {
     let computerSelection = getComputerChoice();
     playSingleRound(playerSelection, computerSelection);
 });
-
-// const playerSelectionPaper
-// const playerSelectionScissors
